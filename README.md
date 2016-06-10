@@ -1,5 +1,6 @@
 # events-merge `v1.0.0`
 [![Travis](https://img.shields.io/travis/amit3vr/events-merge.svg)](https://travis-ci.org/amit3vr/events-merge)
+[![npm](https://img.shields.io/npm/dt/events-merge.svg?maxAge=2592000)](https://www.npmjs.com/package/events-merge)
 
 A small utility for merging two+ `EventEmitter`s together.
 
