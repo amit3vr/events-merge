@@ -1,0 +1,32 @@
+{
+  "name": "events-merge",
+  "version": "1.0.0",
+  "description": "A small tool for merging EventEmitters.",
+  "main": "./lib/merge.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amit3vr/events-merge.git"
+  },
+  "keywords": [
+    "merge",
+    "events",
+    "EventEmitter",
+    "emitter"
+  ],
+  "author": "Amit Evron \"amit3vr\"",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amit3vr/events-merge/issues"
+  },
+  "homepage": "https://github.com/amit3vr/events-merge#readme",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "2.5.3"
+  }
+}
