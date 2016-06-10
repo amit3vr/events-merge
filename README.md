@@ -1,18 +1,90 @@
-[node.js] Merge multiple EventEmitters
+# events-merge `v1.0.0`
+[![Travis](https://img.shields.io/travis/amit3vr/events-merge.svg)](https://travis-ci.org/amit3vr/events-merge)
 
-Written for [kiss.io](http://github.com/kissio/kiss.io).
+A small utility for merging two+ `EventEmitter`s together.
 
-### Use with
-`var merge = require('events-merge');`
-or
-`var merge = require('events-merge')(opts);`
+## Installing
+`$ npm install --save events-merge`
 
-### And then..
-syntax: `merge(em1, em2);`
-or `em1.merge(em2);`
+## Testing
+`$ cd events-merge`  
+`$ npm install --only=dev`  
+`$ npm test`
 
-opts:
-* overwrite:Boolean[=false] overwrite old handlers instead of appending them.
-* polyfill:Boolean[=false] adds `merge` and `extend` methods to  EventEmitter class.
+## Getting Started
+```javascript
+var merge   = require('events-merge');
+var Emitter = require('events').EventEmitter;
 
-syntax: `merge.set(opts).emitters(em1,em2);`
+var counter = 0;
+var base = new Emitter();
+var emitters = [
+  new Emitter(),
+  new Emitter()
+];
+
+base.on('inc', () => { counter++ });
+emitters[0].on('inc', () => { counter++ });
+emitters[1].on('dec', () => { counter-- });
+
+merge.to(base).emitters(emitters);
+
+base.emit('inc'); // counter == 2
+base.emit('inc'); // counter == 4
+base.emit('dec'); // counter == 3
+```
+
+or simply
+
+```javascript
+var merge = require('events-merge').merge;
+
+// code code code...
+
+merge(base, emitter1, emitter2, ...); // base is now merged with the given emitters.
+```
+
+## API
+#### merge.set(key:String, value) : self
+Sets a default option for the `events-merge` module.  
+> `merge.set('overwrite', true);`
+
+#### merge.base(emitter:Emitter) : self
+Sets a base emitter to merge other emitters to.  
+> `merge.base(emitter).emitters(emitter1, emitter2, ...);`
+
+#### merge.to(emitter:Emitter) : self
+Alias to `merge.base`.  
+> `merge.to(emitter).merge(emitter1, emitter2, ...);`
+
+#### merge.merge(...emitters:Emitter) : Emitter
+#### merge.merge(emitters:Array<Emitter>) : Emitter
+Merge the given `emitters` (by array or by seperated param) to the base emitter. If not base emitter given, uses the first emitter in the given `emitters` list.  
+> ```javascript
+> var merge = require('events-merge').merge;
+> merge(base, emitter1, emitter2, ...); // base is now merged with the given emitters.
+> ```
+
+#### merge.emitters(...emitters:Emitter) : Emitter
+#### merge.emitters(emitters:Array<Emitter>) : Emitter
+Alias for `merge.merge`.
+
+#### [getter] merge.overwrite
+Sets the `overwrite` flag to `true`.
+> `merge.overwrite.to(base).merge(emitter1, emitter2, ...);`
+
+#### [static] merge.eventNamesOf(emitter:Emitter) : Array<String>
+A helper method that returns list of event names that a given `emitter` holds.
+> ```javascript
+> emitter.on('ev1', someMethod);
+> emitter.on('ev2', anotherMethod);
+>
+> console.log(merge.eventNamesOf(emitter)); // prints ['ev1', 'ev2'].
+> ```
+
+## LICENSE
+[MIT](https://github.com/amit3vr/events-merge/blob/master/LICENSE)
+
+---
+
+> Yo! Follow me on GitHub [@amit3vr](https://github.com/amit3vr). You might find my shit useful someday.
