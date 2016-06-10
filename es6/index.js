@@ -34,7 +34,7 @@ class Merge
     return this;
   }
 
-  static eventNames(emitter)
+  static eventNamesOf(emitter)
   {
     if(typeof emitter.eventNames == 'function')
       return emitter.eventNames();
@@ -66,7 +66,7 @@ class Merge
 
     return emitters.reduce(function(base, emitter)
     {
-      for(var event of Merge.eventNames(emitter))
+      for(var event of Merge.eventNamesOf(emitter))
       {
         if(overwrite)
           base.removeAllListeners(event);

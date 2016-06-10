@@ -1,6 +1,14 @@
 'use strict';
 
-function eventNames(emitter)
+function Merge(opts)
+{
+  if(!this)
+    return new Merge(opts);
+
+  this.defaults = opts || {};
+}
+
+Merge.eventNamesOf = function(emitter)
 {
   if(typeof emitter.eventNames == 'function')
     return emitter.eventNames();
@@ -9,14 +17,6 @@ function eventNames(emitter)
     return Object.keys(emitter._events);
 
   return [];
-}
-
-function Merge(opts)
-{
-  if(!this)
-    return new Merge(opts);
-
-  this.defaults = opts || {};
 }
 
 Merge.prototype.set = function(key, value)
@@ -64,7 +64,7 @@ Merge.prototype.emitters = function(emitters)
 
   return emitters.reduce(function(base, emitter)
   {
-    for(var event of eventNames(emitter))
+    for(var event of Merge.eventNamesOf(emitter))
     {
       if(overwrite)
         base.removeAllListeners(event);
