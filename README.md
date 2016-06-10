@@ -45,23 +45,32 @@ var merge = require('events-merge').merge;
 merge(base, emitter1, emitter2, ...); // base is now merged with the given emitters.
 ```
 
+
 #### Using the es5 flavor
 **`merge` uses the es6 syntax by default**.
 If your node.js version does not support es6 syntax, you can overcome this problem by requiring `events-merge/es5` lib instead.  
-> `var merge = require('events-merge/es5');`
+> ```javascript
+> var merge = require('events-merge/es5');
+> ```
 
 ## API
 #### merge.set(key:String, value) : self
 Sets a default option for the `events-merge` module.  
-> `merge.set('overwrite', true);`
+> ```javascript
+> merge.set('overwrite', true);
+> ```
 
 #### merge.base(emitter:Emitter) : self
 Sets a base emitter to merge other emitters to.  
-> `merge.base(emitter).emitters(emitter1, emitter2, ...);`
+> ```javascript
+> merge.base(emitter).emitters(emitter1, emitter2, ...);
+> ```
 
 #### merge.to(emitter:Emitter) : self
 Alias to `merge.base`.  
-> `merge.to(emitter).merge(emitter1, emitter2, ...);`
+> ```javascript
+> merge.to(emitter).merge(emitter1, emitter2, ...);
+> ```
 
 #### merge.merge(...emitters:Emitter) : Emitter
 #### merge.merge(emitters:Array<Emitter>) : Emitter
@@ -77,7 +86,9 @@ Alias for `merge.merge`.
 
 #### [getter] merge.overwrite
 Sets the `overwrite` flag to `true`.
-> `merge.overwrite.to(base).merge(emitter1, emitter2, ...);`
+> ```javascript
+> merge.overwrite.to(base).merge(emitter1, emitter2, ...);
+> ```
 
 #### [static] merge.eventNamesOf(emitter:Emitter) : Array<String>
 A helper method that returns list of event names that a given `emitter` holds.
