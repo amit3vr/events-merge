@@ -52,7 +52,6 @@ Merge.prototype.base = function(headEmitter)
   return this;
 };
 
-Merge.prototype.do =
 Merge.prototype.merge =
 Merge.prototype.emitters = function(emitters)
 {
