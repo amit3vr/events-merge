@@ -32,7 +32,7 @@ describe('merge.to(base).emitters(...emitters)', function()
       counter--;
     });
 
-    merge.to(base).emitters(...emitters);
+    merge.to(base).emitters(emitters);
 
     base.emit('inc');
     expect(counter).to.equal(2);
@@ -72,7 +72,7 @@ describe('merge.overwrite.to(base).emitters(...emitters)', function()
       counter--;
     });
 
-    merge.overwrite.to(base).emitters(...emitters);
+    merge.overwrite.to(base).emitters(emitters);
 
     base.emit('inc');
     expect(counter).to.equal(1);
