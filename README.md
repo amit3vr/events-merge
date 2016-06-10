@@ -44,6 +44,11 @@ var merge = require('events-merge').merge;
 merge(base, emitter1, emitter2, ...); // base is now merged with the given emitters.
 ```
 
+#### Using the es5 flavor
+**`merge` uses the es6 syntax by default**.
+If your node.js version does not support es6 syntax, you can overcome this problem by requiring `events-merge/es5` lib instead.  
+> `var merge = require('events-merge/es5');`
+
 ## API
 #### merge.set(key:String, value) : self
 Sets a default option for the `events-merge` module.  
