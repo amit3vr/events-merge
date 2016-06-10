@@ -54,9 +54,10 @@ Merge.prototype.base = function(headEmitter)
 
 Merge.prototype.do =
 Merge.prototype.merge =
-Merge.prototype.emitters = function()
+Merge.prototype.emitters = function(emitters)
 {
-  var emitters = Array.prototype.slice.call(arguments);
+  if(!Array.isArray(emitters))
+    emitters = Array.prototype.slice.call(arguments);
   var baseEmitter = this.flag('baseEmitter') || emitters.shift();
   var overwrite = this.flag('overwrite');
   this.reset();
