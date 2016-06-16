@@ -27,7 +27,7 @@ describe('merge.to(base).emitters(...emitters)', function()
       counter++;
     });
 
-    emitters[1].on('dec', function()
+    emitters[1].once('dec', function()
     {
       counter--;
     });
@@ -40,6 +40,11 @@ describe('merge.to(base).emitters(...emitters)', function()
     base.emit('inc');
     expect(counter).to.equal(4);
 
+    base.emit('dec');
+    expect(counter).to.equal(3);
+
+    // 'dec' events is a 'once' event - so should
+    // not work now.
     base.emit('dec');
     expect(counter).to.equal(3);
   });
