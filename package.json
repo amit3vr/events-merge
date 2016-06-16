@@ -2,7 +2,7 @@
   "name": "events-merge",
   "version": "1.2.0",
   "description": "A small tool for merging EventEmitters.",
-  "main": "./es6",
+  "main": "./es5",
   "directories": {
     "test": "test"
   },

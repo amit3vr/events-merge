@@ -46,12 +46,14 @@ merge(base, emitter1, emitter2, ...); // base is now merged with the given emitt
 ```
 
 
-#### Using the es5 flavor
-**`merge` uses the es6 syntax by default**.
+#### Using the es6 flavor
+**`merge` uses the es5 syntax by default**.
 If your node.js version does not support es6 syntax, you can overcome this problem by requiring `events-merge/es5` lib instead.  
 > ```javascript
-> var merge = require('events-merge/es5');
+> var merge = require('events-merge/es6');
 > ```
+
+**NOTICE** that `require('events-merge/es6').merge` shortcut DOESN'T work, so use the es6 flavor only with the oop api. 
 
 ## API
 #### merge.set(key:String, value) : self
