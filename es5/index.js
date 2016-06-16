@@ -35,7 +35,8 @@ Merge.prototype.flag = function(key, value)
   return this._flags[key] || this.defaults[key];
 };
 
-Merge.prototype.__defineGetter__('overwrite', function(){
+Merge.prototype.__defineGetter__('overwrite', function()
+{
   this.flag('overwrite', true);
   return this;
 });
