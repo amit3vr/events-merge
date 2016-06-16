@@ -55,11 +55,13 @@ Merge.prototype.base = function(headEmitter)
 Merge.prototype.merge =
 Merge.prototype.emitters = function(emitters)
 {
+  var noop = function() {};
+  var self = this || { flag: noop, reset: noop };
   if(!Array.isArray(emitters))
     emitters = Array.from(arguments);
-  var baseEmitter = this.flag('baseEmitter') || emitters.shift();
-  var overwrite = this.flag('overwrite');
-  this.reset();
+  var baseEmitter = self.flag('baseEmitter') || emitters.shift();
+  var overwrite = self.flag('overwrite');
+  self.reset();
 
   return emitters.reduce(function(base, emitter)
   {
