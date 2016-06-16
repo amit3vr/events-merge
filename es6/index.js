@@ -73,8 +73,11 @@ class Merge
 
         for(var fn of emitter.listeners(event))
         {
-          if(base.listenerCount(event) < base.getMaxListeners())
+          if(!base.getMaxListeners
+            || base.listeners(event).length < base.getMaxListeners())
+          {
             base.addListener(event, fn);
+          }
         }
       }
       return base;
