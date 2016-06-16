@@ -59,7 +59,7 @@ class Merge
   merge(emitters)
   {
     if(!Array.isArray(emitters))
-      emitters = Array.prototype.slice.call(arguments);
+      emitters = Array.from(arguments);
     var baseEmitter = this.flag('baseEmitter') || emitters.shift();
     var overwrite = this.flag('overwrite');
     this.reset();
