@@ -17,7 +17,7 @@ Merge.eventNamesOf = function(emitter)
     return Object.keys(emitter._events);
 
   return [];
-}
+};
 
 Merge.prototype.set = function(key, value)
 {
